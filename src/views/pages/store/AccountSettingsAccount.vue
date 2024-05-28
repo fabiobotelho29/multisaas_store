@@ -1,5 +1,5 @@
 <script setup>
-import avatar1 from '@images/avatars/avatar-1.png';
+import avatar1 from '@images/avatars/avatar-1.png'
 
 const accountData = {
   avatarImg: avatar1,
@@ -105,7 +105,7 @@ const currencies = [
 <template>
   <VRow>
     <VCol cols="12">
-      <VCard title="Dados da Conta">
+      <VCard title="Dados da Empresa">
         <VCardText class="d-flex">
           <!-- 👉 Avatar -->
           <VAvatar
@@ -162,27 +162,27 @@ const currencies = [
           <!-- 👉 Form -->
           <VForm class="mt-6">
             <VRow>
-              <!-- 👉 First Name -->
+              <!-- 👉 Nome Fantasia -->
               <VCol
                 md="6"
                 cols="12"
               >
                 <VTextField
                   v-model="accountDataLocal.firstName"
-                  placeholder="John"
-                  label="First Name"
+                  placeholder="Nome Fantasia"
+                  label="Nome Fantasia"
                 />
               </VCol>
 
-              <!-- 👉 Last Name -->
+              <!-- 👉 Responsável -->
               <VCol
                 md="6"
                 cols="12"
               >
                 <VTextField
                   v-model="accountDataLocal.lastName"
-                  placeholder="Doe"
-                  label="Last Name"
+                  placeholder="Responsável"
+                  label="Responsável"
                 />
               </VCol>
 
@@ -199,117 +199,99 @@ const currencies = [
                 />
               </VCol>
 
-              <!-- 👉 Organization -->
+              <!-- 👉 Whatsapp -->
               <VCol
                 cols="12"
                 md="6"
               >
                 <VTextField
                   v-model="accountDataLocal.org"
-                  label="Organization"
-                  placeholder="ThemeSelection"
+                  label="Whatsapp"
+                  placeholder="Whatsapp"
                 />
               </VCol>
 
-              <!-- 👉 Phone -->
+              <!-- 👉 ZipCode -->
               <VCol
                 cols="12"
                 md="6"
               >
                 <VTextField
                   v-model="accountDataLocal.phone"
-                  label="Phone Number"
-                  placholder="+1 (917) 543-9876"
+                  label="CEP"
+                  placholder="CEP"
                 />
               </VCol>
 
-              <!-- 👉 Address -->
+              <!-- 👉 Endereço -->
               <VCol
                 cols="12"
                 md="6"
               >
                 <VTextField
                   v-model="accountDataLocal.address"
-                  label="Address"
-                  placeholder="123 Main St, New York, NY 10001"
+                  label="Endereço"
+                  placeholder="Endereço"
                 />
               </VCol>
 
-              <!-- 👉 State -->
+              <!-- 👉 Número -->
               <VCol
                 cols="12"
                 md="6"
               >
                 <VTextField
                   v-model="accountDataLocal.state"
-                  label="State"
-                  placeholder="New York"
+                  label="Número"
+                  placeholder="Número"
                 />
               </VCol>
 
-              <!-- 👉 Zip Code -->
+              <!-- 👉 Complemento -->
               <VCol
                 cols="12"
                 md="6"
               >
                 <VTextField
                   v-model="accountDataLocal.zip"
-                  label="Zip Code"
-                  placeholder="10001"
+                  label="Complemento"
+                  placeholder="Complemento"
                 />
               </VCol>
 
-              <!-- 👉 Country -->
+              <!-- 👉 Bairro -->
               <VCol
                 cols="12"
-                md="6"
+                md="4"
               >
-                <VSelect
-                  v-model="accountDataLocal.country"
-                  label="Country"
-                  :items="['USA', 'Canada', 'UK', 'India', 'Australia']"
-                  placeholder="Select Country"
+                <VTextField
+                  v-model="accountDataLocal.zip"
+                  label="Bairro"
+                  placeholder="Bairro"
                 />
               </VCol>
 
-              <!-- 👉 Language -->
+              <!-- 👉 Cidade -->
               <VCol
                 cols="12"
-                md="6"
+                md="4"
               >
-                <VSelect
-                  v-model="accountDataLocal.language"
-                  label="Language"
-                  placeholder="Select Language"
-                  :items="['English', 'Spanish', 'Arabic', 'Hindi', 'Urdu']"
+                <VTextField
+                  v-model="accountDataLocal.zip"
+                  label="Cidade"
+                  placeholder="Cidade"
                 />
               </VCol>
 
-              <!-- 👉 Timezone -->
+              <!-- 👉 Estado -->
               <VCol
                 cols="12"
-                md="6"
+                md="4"
               >
-                <VSelect
-                  v-model="accountDataLocal.timezone"
-                  label="Timezone"
-                  placeholder="Select Timezone"
-                  :items="timezones"
-                  :menu-props="{ maxHeight: 200 }"
-                />
-              </VCol>
-
-              <!-- 👉 Currency -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VSelect
-                  v-model="accountDataLocal.currency"
-                  label="Currency"
-                  placeholder="Select Currency"
-                  :items="currencies"
-                  :menu-props="{ maxHeight: 200 }"
+                <VTextField
+                  v-model="accountDataLocal.zip"
+                  label="Estado"
+                  placeholder="Estado"
                 />
               </VCol>
 
@@ -318,7 +300,7 @@ const currencies = [
                 cols="12"
                 class="d-flex flex-wrap gap-4"
               >
-                <VBtn>Save changes</VBtn>
+                <VBtn>salvar Alterações</VBtn>
 
                 <VBtn
                   color="secondary"
@@ -326,36 +308,11 @@ const currencies = [
                   type="reset"
                   @click.prevent="resetForm"
                 >
-                  Cancel
+                  Cancelar
                 </VBtn>
               </VCol>
             </VRow>
           </VForm>
-        </VCardText>
-      </VCard>
-    </VCol>
-
-    <VCol cols="12">
-      <!-- 👉 Delete Account -->
-      <VCard title="Delete Account">
-        <VCardText>
-          <!-- 👉 Checkbox and Button  -->
-          <div>
-            <VCheckbox
-              v-model="isAccountDeactivated"
-              :rules="validateAccountDeactivation"
-              label="I confirm my account deactivation"
-            />
-          </div>
-
-          <VBtn
-            :disabled="!isAccountDeactivated"
-            color="error"
-            class="mt-3"
-            @click="isConfirmDialogOpen = true"
-          >
-            Deactivate Account
-          </VBtn>
         </VCardText>
       </VCard>
     </VCol>

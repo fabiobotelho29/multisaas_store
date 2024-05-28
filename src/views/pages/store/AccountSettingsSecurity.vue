@@ -213,7 +213,7 @@ const isOneTimePasswordDialogVisible = ref(false)
               color="secondary"
               variant="outlined"
             >
-              Reset
+              Cancelar
             </VBtn>
           </VCardText>
         </VForm>
