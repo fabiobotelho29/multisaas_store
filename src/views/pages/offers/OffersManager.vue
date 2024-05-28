@@ -1,5 +1,9 @@
 <script setup>
-import avatar1 from '@images/avatars/avatar-1.png';
+import avatar1 from '@images/avatars/avatar-1.png'
+import pages1 from '@images/pages/1.png'
+import AddNewOfferDrawer from '@/views/forms/AddNewOfferDrawer.vue'
+
+const isAddNewOfferDrawerVisible = ref(false)
 
 const accountData = {
   avatarImg: avatar1,
@@ -105,261 +109,196 @@ const currencies = [
 <template>
   <VRow>
     <VCol cols="12">
-      <VCard title="Gerenciamento das Mega Ofertas">
-        <VCardText class="d-flex">
-          <!-- 👉 Avatar -->
-          <VAvatar
-            rounded
-            size="120"
-            class="me-5"
-            :image="accountDataLocal.avatarImg"
-          />
-
-          <!-- 👉 Upload Photo -->
-          <form class="d-flex flex-column justify-center gap-4">
-            <div class="d-flex flex-wrap gap-4">
-              <VBtn
-                color="primary"
-                @click="refInputEl?.click()"
-              >
-                <VIcon
-                  icon="mdi-cloud-upload-outline"
-                  class="d-sm-none"
-                />
-                <span class="d-sm-block d-none">Upload logomarca</span>
-              </VBtn>
-
-              <input
-                ref="refInputEl"
-                type="file"
-                name="file"
-                accept=".jpeg,.png,.jpg,GIF"
-                hidden
-                @input="changeAvatar"
-              >
-
-              <VBtn
-                type="reset"
-                color="error"
-                variant="outlined"
-                @click="resetAvatar"
-              >
-                <span class="d-sm-block d-none">Limpar</span>
-                <VIcon
-                  icon="mdi-refresh"
-                  class="d-sm-none"
-                />
-              </VBtn>
-            </div>
-
-            <p class="mb-0 text-xs">
-              Permitidos JPG or PNG. Max size of 800K
-            </p>
-          </form>
-        </VCardText>
-
-        <VCardText>
-          <!-- 👉 Form -->
-          <VForm class="mt-6">
-            <VRow>
-              <!-- 👉 First Name -->
-              <VCol
-                md="6"
-                cols="12"
-              >
-                <VTextField
-                  v-model="accountDataLocal.firstName"
-                  placeholder="John"
-                  label="First Name"
-                />
-              </VCol>
-
-              <!-- 👉 Last Name -->
-              <VCol
-                md="6"
-                cols="12"
-              >
-                <VTextField
-                  v-model="accountDataLocal.lastName"
-                  placeholder="Doe"
-                  label="Last Name"
-                />
-              </VCol>
-
-              <!-- 👉 Email -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VTextField
-                  v-model="accountDataLocal.email"
-                  label="E-mail"
-                  placeholder="johndoe@gmail.com"
-                  type="email"
-                />
-              </VCol>
-
-              <!-- 👉 Organization -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VTextField
-                  v-model="accountDataLocal.org"
-                  label="Organization"
-                  placeholder="ThemeSelection"
-                />
-              </VCol>
-
-              <!-- 👉 Phone -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VTextField
-                  v-model="accountDataLocal.phone"
-                  label="Phone Number"
-                  placholder="+1 (917) 543-9876"
-                />
-              </VCol>
-
-              <!-- 👉 Address -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VTextField
-                  v-model="accountDataLocal.address"
-                  label="Address"
-                  placeholder="123 Main St, New York, NY 10001"
-                />
-              </VCol>
-
-              <!-- 👉 State -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VTextField
-                  v-model="accountDataLocal.state"
-                  label="State"
-                  placeholder="New York"
-                />
-              </VCol>
-
-              <!-- 👉 Zip Code -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VTextField
-                  v-model="accountDataLocal.zip"
-                  label="Zip Code"
-                  placeholder="10001"
-                />
-              </VCol>
-
-              <!-- 👉 Country -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VSelect
-                  v-model="accountDataLocal.country"
-                  label="Country"
-                  :items="['USA', 'Canada', 'UK', 'India', 'Australia']"
-                  placeholder="Select Country"
-                />
-              </VCol>
-
-              <!-- 👉 Language -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VSelect
-                  v-model="accountDataLocal.language"
-                  label="Language"
-                  placeholder="Select Language"
-                  :items="['English', 'Spanish', 'Arabic', 'Hindi', 'Urdu']"
-                />
-              </VCol>
-
-              <!-- 👉 Timezone -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VSelect
-                  v-model="accountDataLocal.timezone"
-                  label="Timezone"
-                  placeholder="Select Timezone"
-                  :items="timezones"
-                  :menu-props="{ maxHeight: 200 }"
-                />
-              </VCol>
-
-              <!-- 👉 Currency -->
-              <VCol
-                cols="12"
-                md="6"
-              >
-                <VSelect
-                  v-model="accountDataLocal.currency"
-                  label="Currency"
-                  placeholder="Select Currency"
-                  :items="currencies"
-                  :menu-props="{ maxHeight: 200 }"
-                />
-              </VCol>
-
-              <!-- 👉 Form Actions -->
-              <VCol
-                cols="12"
-                class="d-flex flex-wrap gap-4"
-              >
-                <VBtn>Save changes</VBtn>
-
-                <VBtn
-                  color="secondary"
-                  variant="outlined"
-                  type="reset"
-                  @click.prevent="resetForm"
-                >
-                  Cancel
-                </VBtn>
-              </VCol>
-            </VRow>
-          </VForm>
-        </VCardText>
-      </VCard>
-    </VCol>
-
-    <VCol cols="12">
-      <!-- 👉 Delete Account -->
-      <VCard title="Delete Account">
-        <VCardText>
-          <!-- 👉 Checkbox and Button  -->
-          <div>
-            <VCheckbox
-              v-model="isAccountDeactivated"
-              :rules="validateAccountDeactivation"
-              label="I confirm my account deactivation"
-            />
-          </div>
-
-          <VBtn
-            :disabled="!isAccountDeactivated"
-            color="error"
-            class="mt-3"
-            @click="isConfirmDialogOpen = true"
-          >
-            Deactivate Account
-          </VBtn>
-        </VCardText>
-      </VCard>
+      <VBtn 
+        color="secondary"         
+        class="float-right"
+        @click="isAddNewOfferDrawerVisible=true"
+      >
+        Nova Mega Oferta
+        <VIcon
+          end
+          icon="mdi-cloud-upload-outline"
+        />
+      </VBtn>
     </VCol>
   </VRow>
+
+  <VRow>
+    <!-- 👉 Influencing The Influencer -->
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+  </VRow>   
+  
+  <VRow>
+    <!-- 👉 Influencing The Influencer -->
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+
+    <VCol
+      cols="12"
+      sm="6"
+      md="3"
+    >
+      <VCard>
+        <VImg
+          :src="pages1"
+          height="201"
+          cover
+        />
+        <VCardItem>
+          <VCardTitle>Influencing The Influencer</VCardTitle>
+        </VCardItem>
+
+        <VCardText>
+          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two years ago.
+        </VCardText>
+      </VCard>
+    </VCol>
+  </VRow>   
+
+  <!-- 👉 Add New Offer -->
+  <AddNewOfferDrawer v-model:isDrawerOpen="isAddNewOfferDrawerVisible" />
 
   <!-- 👉 Confirm Dialog -->
   <ConfirmDialog

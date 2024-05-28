@@ -13,7 +13,7 @@ export default [
     to: { name: 'store-tab', params: { tab: 'account' } },
   },
   {
-    title: 'Mega Ofgertas',
+    title: 'Mega Ofertas',
     icon: { icon: 'mdi-currency-usd' },
     to: { name: 'offers-tab', params: { tab: 'manager' } },
   },
